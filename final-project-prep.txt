@@ -1,0 +1,72 @@
+﻿Final project prep
+
+Function prototypes
+Menu function 
+Get image function 
+Display image function 
+Crop function
+Dim function 
+Brighten function
+Rotate function
+
+
+Main function
+The main function will first print “Welcome to Erinstagram” and then lead to the Get image function.
+
+Get image function 
+This will prompt the user to upload an image and sents the image to the Display Image function 
+
+Display image function 
+
+This function will display the uploaded image and lead the user to the menu function.
+
+Menu function
+
+This function will show the options for the user and asks the user to pick between the options.
+
+The options are 
+
+Crop
+Dim
+Bright
+Rotate
+And/or
+Exit
+
+If the user picks crop, it will lead them to the crop function 
+If the user picks dim, it will lead them to the dim function 
+If the user picks bright, it will lead them to the bright function 
+And
+If the user picks rotate, it will lead them to the rotate function
+
+Crop function 
+The function will prompt the user to crop by certain width and height using numbers
+After the cropping is done, the function will ask the user if they are satisfied or they need to crop it more?
+If they want it to crop it more, they will be given the same prompt.
+If they are satisfied, the cropped image will be saved in display image function and the user will be brought back to the menu function 
+
+The dim function
+The function will prompt the user to select how dim they want their image to be from 0 to 100
+0 being no changes and 100 being the darkest.
+After the user dims the image, the function will ask them if they are satisfied or they want to dim the image more.
+
+If the user wants to dim the image more, they will be given the same prompt.
+If the user is satisfied, the changed image is displayed in the display image function and the user will be brought back to the menu function.
+
+Bright function
+This function will prompt the user to select how bright they want their image to be from 0 to 100.
+
+0 being no changes while 100 being the brightest
+
+If the user wants the image to be brighter, they will be given the same prompt
+
+If the user is satisfied, the changed image is displayed in the display image function and the user will be brought back to the menu function.
+
+The rotate function
+
+The rotate function will ask the user if they want to rotate the image 90 degrees to the right or 90 degrees to the left.
+If the user chooses whether left or right, the user will be given the same prompt with an option to tell the function that they are satisfied.
+
+If they are satisfied, the changes will be displayed in the display image function and they will come back to the menu function.
+
+
