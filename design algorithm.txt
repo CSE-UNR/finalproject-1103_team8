@@ -1,0 +1,51 @@
+﻿main function:
+
+
+* display the options to the user
+* analyze the option that the user input 
+* output with the file saved by the user 
+
+
+display function:
+
+
+* display the image to the user 
+* use the printf variable to show this to user 
+
+
+crop function: 
+
+
+* if user asks to crop image prompt user where
+* ask user the size of the image they want
+* crop it to measurements 
+
+
+dim function: 
+
+
+* if user asks to dim the image prompt a scale
+* put scale to dimness levels 
+
+
+brighten function: 
+ 
+* if user asks to brighten image also prompt another scale 
+* put another scale in terms of brightness 
+
+
+(bonus part) rotate function:
+
+
+* if user asks to rotate image prompt angles 
+* scales of angles to rotate the image 
+
+
+
+
+save to file function: 
+
+
+* prompt user if they want to save file 
+* ask user what to name the file
+* save in file
