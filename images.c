@@ -1,6 +1,7 @@
-// Authors:
+// Authors: Reina Antaredjo
 // Assignment: Final Project 
 // Date: 5/3/24
+
  void menu();
  void cropImage();
  void brightenImage();
