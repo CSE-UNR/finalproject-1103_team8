@@ -7,6 +7,7 @@
  #define totalw 150
 
  void menu();
+ void editImage();
  void cropImage();
  void brightenImage();
  void dimImage();
@@ -17,17 +18,81 @@
 
 #include <stdio.h>
 int main() {
- printf("Welcome to Erinstagram! \n");
- loadImage();
-
-
+	int option;
+		
+	do{
+	printf("Welcome to Erinstagram! \n");
+	menuDisplay();
+	scanf("%d", &option);
+	
+	switch (option){
+		case '1':
+			loadImage();
+			break;
+		case '2':
+			displayImage();
+			break;
+		case '3':
+			editImage();
+			break;
+		case '0':
+			printf("goodbye !!");
+			break;
+		}
+	} while (option != 0);
+	
 	return 0;
 }
 
 void menu(){
 
+	printf("1. load image \n");
+	printf("2. display image \n");
+	printf("3. edit image \n");
+	printf("0. exit \n");
+	printf(" \n");
+	printf(" Choose from one of the options above: ");
+}
 
-
+void editImage(){
+	int option;
+	
+	do{ 
+	 printf("**Editing** \n");
+	 printf("1. crop image \n");
+	 printf("2. dim image \n");
+	 printf("3. brighten image \n");
+	 printf("0. return to main menu \n");
+	 printf("\n");
+	 printf("Choose from one of the options above: ");
+	 
+	 scanf("%d", &option);
+	 
+	 switch(option) {
+	 	case '1':
+	 		cropImage();
+	 		break;
+	 	case '2':
+	 		dimImage();
+	 		break;
+	 	case '3':
+	 		brightenImage();
+	 		break;
+	 	case '0':
+	 		if (option != 0){
+	 			char choice;
+	 			printf("would you like to save file? (y/n)");
+	 			scanf(" %c", &choice)
+	 			
+	 			if (choice == 'y' || choice == 'Y'){
+	 			   saveImage();
+	 			} else {
+	 			   menuDisplay();
+	 			}
+	 			break;
+	 		}
+	 	} while (1);		
+	return;
 }
 
 void cropImage(){
@@ -51,7 +116,7 @@ void saveImage() {
 }
 
 void loadImage(){ 
- FILE* enterImage;
+  FILE* enterImage;
   printf("Loading image \n");
   enterImage = fopen(Current, "r");
   char arr [totalh][totalw];
