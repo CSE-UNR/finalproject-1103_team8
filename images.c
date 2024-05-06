@@ -7,6 +7,7 @@
 
 
  void menu();
+ void displayImage();
  void editImage();
  void cropImage();
  void brightenImage();
@@ -50,8 +51,15 @@ void menu(){
 	printf("2. display image \n");
 	printf("3. edit image \n");
 	printf("0. exit \n");
-	printf(" \n");
+	printf(" ");
 	printf(" Choose from one of the options above: ");
+}
+
+void displayImage();
+	printf("\n");
+	for (int i = 0; i < rows; i++) {
+		printf("%s", images[i]);
+	}
 }
 
 void editImage(){
@@ -93,27 +101,76 @@ void editImage(){
 	 		}
 	 	} while (1);		
 	return;
+	}
 }
-}
-}
-void cropImage(){
 
-	return ;
+void cropImage(int startRow, int startCol, int endRow, int endCol) {
+    if (startRow < 0 || startCol < 0 || endRow >= rows || endCol >= cols || startRow > endRow || startCol > endCol) {
+        printf("Invalid crop coordinates.\n");
+        return;
+    }
+
+    
+    rows = endRow - startRow + 1;
+    cols = endCol - startCol + 1;
+
+    
+    int croppedImage[MAX_SIZE][MAX_SIZE];
+
+    
+    for (int i = startRow; i <= endRow; i++) {
+        for (int j = startCol; j <= endCol; j++) {
+            croppedImage[i - startRow][j - startCol] = image[i][j];
+        }
+    }
+
+    
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            image[i][j] = croppedImage[i][j];
+        }
+    }
+
 }
 
 void brightenImage(){
-
-	return; 
+	for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            if (image[i][j] < 255) {
+                image[i][j]++;
+            }
+        }
+    }
 }
 
 void dimImage() {
-
-	return;
+	for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            if (image[i][j] > 0) {
+                image[i][j]--;
+            }
+        }
+	}
 }
 
 void saveImage() {
-
+	char filename[100];
+	FILE *fp;
+	
+	printf("What would you like to name this file? (including the extenstions)");
+	scanf("%s", filename);
+	
+	fp = fopen(filename, "w");
+	if (fp == NULL) {
+		printf("error with file. \n");
 	return;
+	}
+	
+	fprintf(fp, "%s\n", image[i]);
+
+	fclose(fp);
+	
+	printf("Image saved successfully. ");
 }
 
 void loadImage(){ 
