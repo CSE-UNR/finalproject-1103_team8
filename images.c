@@ -3,15 +3,15 @@
 // Date: 5/3/24
  #define Current "starting_image.txt"
  #define New "new_image.txt"
- #define total 150
+ #define total 250
 
 
  void menu();
- void displayImage();
- void editImage();
- void cropImage();
- void brightenImage();
- void dimImage();
+ void displayImage(char arr[total][total]);
+ void editImage(char arr[total][total]);
+ void cropImage(char arr[total][total]);
+ void dimImage(char arr[total][total]);
+ void brightenImage(char arr[total][total]);
  void saveImage();
  void loadImage();
  
@@ -19,30 +19,31 @@
 
 #include <stdio.h>
 int main() {
+ char a[total][total];
 	int option;
 		
 	do{
 	printf("Welcome to Erinstagram! \n");
-	menuDisplay();
+	menu();
 	scanf("%d", &option);
 	
 	switch (option){
-		case '1':
+		case 1:
 			loadImage();
-			break;
-		case '2':
-			displayImage();
-			break;
-		case '3':
-			editImage();
-			break;
-		case '0':
+			return option;
+		case 2:
+			displayImage(a);
+			return option;
+		case 3:
+			editImage(a);
+			return option;
+		case 0:
 			printf("goodbye !!");
-			break;
+			return option;
 		}
 	} while (option != 0);
 	
-	return 0;
+	
 }
 
 void menu(){
@@ -55,14 +56,19 @@ void menu(){
 	printf(" Choose from one of the options above: ");
 }
 
-void displayImage();
-	printf("\n");
-	for (int i = 0; i < rows; i++) {
-		printf("%s", images[i]);
-	}
+void displayImage(char arr[total][total]){
+
+	//printf(" \n");
+	 int row, col;
+	
+	for(row = 0; row < total; row++){
+   for(col = 0; col < total; col++){
+   printf("%s", &arr[row][col]);
+   }
+}
 }
 
-void editImage(){
+void editImage(char arr[total][total]){
 	int option;
 	
 	do{ 
@@ -78,13 +84,13 @@ void editImage(){
 	 
 	 switch(option) {
 	 	case '1':
-	 		cropImage();
+	 		cropImage(arr);
 	 		break;
 	 	case '2':
-	 		dimImage();
+	 		dimImage(arr);
 	 		break;
 	 	case '3':
-	 		brightenImage();
+	 		brightenImage(arr);
 	 		break;
 	 	case '0':
 	 		if (option != 0){
@@ -92,62 +98,69 @@ void editImage(){
 	 			printf("would you like to save file? (y/n)");
 	 			scanf(" %c", &choice);
 	 			
-	 			if (choice = 'y' || choice = 'Y'){
+	 			if (choice = 'y'){
 	 			   saveImage();
-	 			} else {
-	 			   menuDisplay();
+	 			} else if(choice = 'Y'){
+	 			 saveImage();
+	 			}
+	 			else {
+	 			   menu();
 	 			}
 	 			break;
 	 		}
-	 	} while (1);		
+	 	} 
 	return;
-	}
+	}while (option != 0);
 }
 
-void cropImage(int startRow, int startCol, int endRow, int endCol) {
+void cropImage(char arr[total][total]){
+int startRow,  startCol,  endRow, endCol;
+int rows = endRow - startRow + 1;
+    int cols = endCol - startCol + 1;
     if (startRow < 0 || startCol < 0 || endRow >= rows || endCol >= cols || startRow > endRow || startCol > endCol) {
         printf("Invalid crop coordinates.\n");
         return;
     }
+   
+    
+    
 
     
-    rows = endRow - startRow + 1;
-    cols = endCol - startCol + 1;
-
-    
-    int croppedImage[MAX_SIZE][MAX_SIZE];
+    int croppedImage[total][total];
 
     
     for (int i = startRow; i <= endRow; i++) {
         for (int j = startCol; j <= endCol; j++) {
-            croppedImage[i - startRow][j - startCol] = image[i][j];
+            croppedImage[i - startRow][j - startCol] =  arr[i][j];
         }
     }
 
     
     for (int i = 0; i < rows; i++) {
         for (int j = 0; j < cols; j++) {
-            image[i][j] = croppedImage[i][j];
+            arr[i][j] = croppedImage[i][j];
         }
     }
 
 }
 
-void brightenImage(){
+void brightenImage(char arr[total][total]){
+    int rows, cols;
 	for (int i = 0; i < rows; i++) {
         for (int j = 0; j < cols; j++) {
-            if (image[i][j] < 255) {
-                image[i][j]++;
+            if (arr[i][j] < 255) {
+                arr[i][j]++;
             }
         }
     }
 }
 
-void dimImage() {
+void dimImage(char arr[total][total]){
+ int rows, cols;
 	for (int i = 0; i < rows; i++) {
         for (int j = 0; j < cols; j++) {
-            if (image[i][j] > 0) {
-                image[i][j]--;
+            if (arr[i][j] > 0) {
+                arr[i][j]--;
             }
         }
 	}
@@ -156,7 +169,7 @@ void dimImage() {
 void saveImage() {
   FILE* enterImage;
   printf("Saving image \n");
-  enterImage = fopen(Current, "r");
+  enterImage = fopen(Current, "w");
   char arr [total][total];
   int row, col;
   for(row = 0; row < total; row++){
@@ -166,6 +179,9 @@ void saveImage() {
    for(row = 0; row < total; row++){
    for(col = 0; col < total; col++){
    printf("%d",arr[row][col]);
+   }
+   }
+   }
    }
 
 void loadImage(){ 
@@ -178,14 +194,12 @@ void loadImage(){
    for(col = 0; col < total; col++){
    fgets(&arr[row][col], total, enterImage);
    }
-   for(row = 0; row < total; row++){
-   for(col = 0; col < total; col++){
-   printf("%d",arr[row][col]);
-   }
+   displayImage(arr);
+   
   
   
   }
  
 }
-}
+
 
