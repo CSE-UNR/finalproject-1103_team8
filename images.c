@@ -1,52 +1,70 @@
 // Authors: Reina Antaredjo, Milana Shahnazarian
 // Assignment: Final Project 
-// Date: 5/3/24
- #define Current "starting_image.txt"
- #define New "new_image.txt"
- #define total 100
-
-
- void menu();
- void displayImage(char arr[total][total]);
- void editImage(char arr[total][total]);
- void cropImage(char arr[total][total]);
- void dimImage(char arr[total][total]);
- void brightenImage(char arr[total][total]);
- void saveImage();
- void loadImage();
- 
- 
+// Date: 5/7/24
 
 #include <stdio.h>
-int main() {
- char a[total][total];
+#include <stdbool.h>
+#define total 100
+#define MAX_SIZE 100
+
+void menuDisplay();
+void displayImage(char arr[total][total]);
+void editImage(char arr[total][total]);
+void cropImage(char arr[total][total]);
+void dimImage(char arr[total][total]);
+void brightenImage(char arr[total][total]);
+void saveImage();
+
+ int main(){
 	int option;
-		
-	do{
-	printf("Welcome to Erinstagram! \n");
-	menu();
+	char end;
+	do{ 
+	printf("**ERINSTAGRAM** \n");
+	menuDisplay();
+	
 	scanf("%d", &option);
 	
-	switch (option){
+	switch(option) {
 		case 1:
-			loadImage();
-			return option;
+			FILE *imageFile;
+			char nameofFile[100];
+			char line[MAX_SIZE];
+			
+			int index;
+	
+			scanf("%c", &end);
+			printf("what is the name of the image file?");
+			fgets(nameofFile, MAX_SIZE, stdin);
+	
+			for (int i=0; nameofFile[i] != '\0'; i++) {
+			index = i;
+			}
+			nameofFile[index] = nameofFile[index+1];
+			imageFile = fopen(nameofFile, "r");
+			
+			if (imageFile == NULL) {
+				printf("no files exist. \n");
+				
+			}
+			printf("Image successfully loaded! \n");
+			fclose(imageFile);
+			
+			break;
 		case 2:
-			displayImage(a);
-			return option;
+			displayImage(); 
+			break;
 		case 3:
-			editImage(a);
-			return option;
+			
+			editMenu(); 
+			break;
 		case 0:
-			printf("goodbye !!");
-			return option;
+			printf("Goodbye!"); 
+			break;
 		}
 	} while (option != 0);
-	
-	
 }
 
-void menu(){
+void menuDisplay(){
 
 	printf("1. load image \n");
 	printf("2. display image \n");
@@ -181,20 +199,3 @@ void saveImage() {
    }
    }
 
-void loadImage(){ 
-  FILE* enterImage;
-  printf("Loading image \n");
-  enterImage = fopen(Current, "r");
-  char arr [total][total];
-  int row, col;
-  if (enterImage == NULL){
-    printf("can't enter image \n");
-    return;
-  }
-  for(row = 0; row < total; row++){
-   for(col = 0; col < total; col++){
-   fgets(arr[row], total, enterImage);
-   }
-  }
- 
-}
