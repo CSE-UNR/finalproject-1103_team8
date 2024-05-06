@@ -3,7 +3,7 @@
 // Date: 5/3/24
  #define Current "starting_image.txt"
  #define New "new_image.txt"
- #define total 250
+ #define total 100
 
 
  void menu();
@@ -53,19 +53,17 @@ void menu(){
 	printf("3. edit image \n");
 	printf("0. exit \n");
 	printf(" ");
-	printf(" Choose from one of the options above: ");
+	printf("Choose from one of the options above: ");
 }
 
 void displayImage(char arr[total][total]){
-
-	//printf(" \n");
 	 int row, col;
 	
 	for(row = 0; row < total; row++){
-   for(col = 0; col < total; col++){
-   printf("%s", &arr[row][col]);
-   }
-}
+   	for(col = 0; col < total; col++){
+  	 printf("%s", &arr[row][col]);
+   	}
+	}
 }
 
 void editImage(char arr[total][total]){
@@ -77,7 +75,6 @@ void editImage(char arr[total][total]){
 	 printf("2. dim image \n");
 	 printf("3. brighten image \n");
 	 printf("0. return to main menu \n");
-	 printf("\n");
 	 printf("Choose from one of the options above: ");
 	 
 	 scanf("%d", &option);
@@ -174,7 +171,7 @@ void saveImage() {
   int row, col;
   for(row = 0; row < total; row++){
    for(col = 0; col < total; col++){
-   fgets(&arr[row][col], total, enterImage);
+   fgets(arr[row], total, enterImage);
    }
    for(row = 0; row < total; row++){
    for(col = 0; col < total; col++){
@@ -190,16 +187,14 @@ void loadImage(){
   enterImage = fopen(Current, "r");
   char arr [total][total];
   int row, col;
+  if (enterImage == NULL){
+    printf("can't enter image \n");
+    return;
+  }
   for(row = 0; row < total; row++){
    for(col = 0; col < total; col++){
-   fgets(&arr[row][col], total, enterImage);
+   fgets(arr[row], total, enterImage);
    }
-   displayImage(arr);
-   
-  
-  
   }
  
 }
-
-
