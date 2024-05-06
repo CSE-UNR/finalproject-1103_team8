@@ -113,6 +113,21 @@ void dimImage() {
 
 void saveImage() {
 
+  FILE* enterImage;
+  printf("Saving image \n");
+  enterImage = fopen(Current, "r");
+  char arr [total][total];
+  int row, col;
+  for(row = 0; row < total; row++){
+   for(col = 0; col < total; col++){
+   fgets(&arr[row][col], total, enterImage);
+   }
+   for(row = 0; row < total; row++){
+   for(col = 0; col < total; col++){
+   printf("%d",arr[row][col]);
+   }
+  
+
 	return;
 }
 
