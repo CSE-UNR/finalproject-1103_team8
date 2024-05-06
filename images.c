@@ -1,10 +1,10 @@
-// Authors: Reina Antaredjo
+// Authors: Reina Antaredjo, Milana Shahnazarian
 // Assignment: Final Project 
 // Date: 5/3/24
  #define Current "starting_image.txt"
  #define New "new_image.txt"
- #define totalh 150
- #define totalw 150
+ #define total 150
+
 
  void menu();
  void editImage();
@@ -82,9 +82,9 @@ void editImage(){
 	 		if (option != 0){
 	 			char choice;
 	 			printf("would you like to save file? (y/n)");
-	 			scanf(" %c", &choice)
+	 			scanf(" %c", &choice);
 	 			
-	 			if (choice == 'y' || choice == 'Y'){
+	 			if (choice = 'y' || choice = 'Y'){
 	 			   saveImage();
 	 			} else {
 	 			   menuDisplay();
@@ -94,7 +94,8 @@ void editImage(){
 	 	} while (1);		
 	return;
 }
-
+}
+}
 void cropImage(){
 
 	return ;
@@ -119,24 +120,20 @@ void loadImage(){
   FILE* enterImage;
   printf("Loading image \n");
   enterImage = fopen(Current, "r");
-  char arr [totalh][totalw];
+  char arr [total][total];
   int row, col;
-  for(row = 0; row < totalh; row++){
-   for(col = 0; col < totalw; col++){
-   fgets(enterImage "%s" arr[row][col]);
+  for(row = 0; row < total; row++){
+   for(col = 0; col < total; col++){
+   fgets(&arr[row][col], total, enterImage);
    }
-   for(row = 0; row < totalh; row++){
-   for(col = 0; col < totalw; col++){
-   printf("%s" arr[row][col]);
+   for(row = 0; row < total; row++){
+   for(col = 0; col < total; col++){
+   printf("%d",arr[row][col]);
    }
   
   
   }
  
-  
-  
-  
- 
-
+}
 }
 
